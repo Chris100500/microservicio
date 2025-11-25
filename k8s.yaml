@@ -5,6 +5,6 @@ metadata:
 spec:
   containers:
     - name: nginx
-      image: hoverdev/hola-mundo:4
+      image: chris100500/hola-mundo:1
       ports:
         - containerPort: 3000
