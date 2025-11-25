@@ -17,7 +17,7 @@ spec:
     spec:
       containers:
         - name: hola-mundo
-          image: chris100500/hola-mundo:6
+          image: chris100500/hola-mundo:5
           ports:
             - containerPort: 3000
 
