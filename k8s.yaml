@@ -7,7 +7,7 @@ metadata:
     app: microservicio
     areanegocio: pagos
 spec:
-  replicas: 3
+  replicas: 5
   selector:
     matchLabels:
       app: microservicio
@@ -21,6 +21,13 @@ spec:
           image: chris100500/hola-mundo:5
           ports:
             - containerPort: 3000
+          resources:
+            request:
+              cpu: "100m"
+              memory: "256Mi"
+            limits:
+              cpu: "300m"
+              memory: "512Mi"
           envFrom:
             - configMapRef:
                 name: microservicio
