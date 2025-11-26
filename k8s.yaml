@@ -39,6 +39,7 @@ apiVersion: v1
 kind: Service
 metadata:
   name: microservicio
+  namespace: christian
 spec:
   selector:
     app: microservicio
@@ -51,6 +52,7 @@ apiVersion: v1
 kind: ConfigMap
 metadata:
   name: microservicio
+  namespace: christian
 data:
   LOG_LEVEL: debug
 ---
@@ -58,6 +60,7 @@ apiVersion: v1
 kind: Secret
 metadata:
   name: microservicio
+  namespace: christian
 data:
   DATABASE_PASSWORD: U3VwZXJTZWd1cm8yMDI1
 ---
@@ -65,6 +68,7 @@ apiVersion: autoscaling/v2
 kind: HorizontalPodAutoscaler
 metadata:
   name: microservicio
+  namespace: christian
 spec:
   scaleTargetRef:
     apiVersion: apps/v1
