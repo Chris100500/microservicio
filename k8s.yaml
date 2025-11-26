@@ -58,5 +58,29 @@ kind: Secret
 metadata:
   name: microservicio
 data:
-  DATABASE_PASSWORD: YnVlbmF6b3NpZnVuY2lvbmE=
+  DATABASE_PASSWORD: U3VwZXJTZWd1cm8yMDI1
 ---
+apiVersion: autoscaling/v2
+kind: HorizontalPodAutoscaler
+metadata:
+  name: microservicio
+spec:
+  scaleTargetRef:
+    apiVersion: apps/v1
+    kind: Deployment
+    name: microservicio
+  minReplicas: 2
+  maxReplicas: 6
+  metrics:
+    - type: Resource
+      resource:
+        name: cpu
+        target:
+          type: Utilization ## EN BASE AL REQUEST
+          averageUtilization: 90
+    - type: Resource
+      resource:
+        name: memory
+        target:
+          type: Utilization ## EN BASE AL REQUEST
+          averageUtilization: 90
