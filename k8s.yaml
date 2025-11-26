@@ -24,14 +24,8 @@ spec:
           envFrom:
             - configMapRef:
                 name: microservicio
-          volumeMounts:
-            - name: config
-              mountPath: /app/config
-      volumes:
-        - name: config
-          configMap:
-            name: microservicio-config
-
+            - secretRef:
+                name: microservicio
 ---
 apiVersion: v1
 kind: Service
@@ -53,11 +47,9 @@ data:
   LOG_LEVEL: debug
 ---
 apiVersion: v1
-kind: ConfigMap
+kind: Secret
 metadata:
-  name: microservicio-config
+  name: microservicio
 data:
-  app.conf: |
-    server {
-      port 1000
-    }
+  DATABASE_PASSWORD: YnVlbmF6b3NpZnVuY2lvbmE=
+---
