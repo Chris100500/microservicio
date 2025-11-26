@@ -1,3 +1,4 @@
+
 apiVersion: apps/v1
 kind: Deployment
 metadata:
@@ -20,6 +21,17 @@ spec:
           image: chris100500/hola-mundo:5
           ports:
             - containerPort: 3000
+          envFrom:
+            - configMapRef:
+                name: microservicio
+          volumeMounts:
+            - name: config
+              mountPath: /app/config
+      volumes:
+        - name: config
+          configMap:
+            name: microservicio-config
+
 ---
 apiVersion: v1
 kind: Service
@@ -39,3 +51,13 @@ metadata:
   name: microservicio
 data:
   LOG_LEVEL: debug
+---
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: microservicio-config
+data:
+  app.conf: |
+    server {
+      port 1000
+    }
