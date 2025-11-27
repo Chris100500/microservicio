@@ -1,4 +1,3 @@
-
 apiVersion: apps/v1
 kind: Deployment
 metadata:
@@ -8,7 +7,7 @@ metadata:
     app: microservicio
     areanegocio: pagos
 spec:
-  replicas: 5
+  replicas: 1
   selector:
     matchLabels:
       app: microservicio
@@ -34,6 +33,10 @@ spec:
                 name: microservicio
             - secretRef:
                 name: microservicio
+            - configMapRef:
+                name: superconfigmap
+            - secretRef:
+                name: supersecreto
 ---
 apiVersion: v1
 kind: Service
